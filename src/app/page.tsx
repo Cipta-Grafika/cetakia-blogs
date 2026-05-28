@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { LandingPage } from "@/features/blogs/pages/LandingPage";
+import { LandingPage } from "@/features/landing/pages/LandingPage";
 import { getSiteData } from "@/features/blogs/services/blog.service";
 
 export const metadata: Metadata = {

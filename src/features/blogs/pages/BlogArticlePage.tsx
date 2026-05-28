@@ -2,28 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { BlogArticleInteractions } from "@/features/blogs/components/BlogArticleInteractions";
+import { BlogArticleRecommendationsSidebar } from "@/features/blogs/components/article/BlogArticleRecommendationsSidebar";
+import { BlogArticleTocSidebar } from "@/features/blogs/components/article/BlogArticleTocSidebar";
 import { BlogHero } from "@/features/blogs/components/BlogHero";
-import { SiteFooter } from "@/features/blogs/components/SiteFooter";
-import { SiteHeader } from "@/features/blogs/components/SiteHeader";
-import type { BlogDetailPageData, SiteData, TocNode } from "@/features/blogs/types/blog.type";
+import type { BlogDetailPageData, SiteData } from "@/features/blogs/types/blog.type";
+import { SiteFooter } from "@/features/global/components/SiteFooter";
+import { SiteHeader } from "@/features/global/components/SiteHeader";
 
 type BlogArticlePageProps = {
   site: SiteData;
   data: BlogDetailPageData;
 };
-
-function TocList({ items, nested = false }: { items: TocNode[]; nested?: boolean }) {
-  return (
-    <ol className={nested ? undefined : "blog-toc__list"}>
-      {items.map((item) => (
-        <li key={item.href}>
-          <a href={item.href}>{item.title}</a>
-          {item.children?.length ? <TocList items={item.children} nested /> : null}
-        </li>
-      ))}
-    </ol>
-  );
-}
 
 export function BlogArticlePage({ site, data }: BlogArticlePageProps) {
   return (
@@ -48,32 +37,7 @@ export function BlogArticlePage({ site, data }: BlogArticlePageProps) {
       />
 
       <main className="blog-layout" id="main-content">
-        <aside className="blog-sidebar blog-sidebar--left" aria-label="Table of contents sidebar">
-          <section className="blog-side-card blog-side-card--toc" aria-labelledby="toc-heading">
-            <h2 id="toc-heading" className="blog-side-card__title">
-              Table of contents
-            </h2>
-
-            <nav className="blog-toc blog-toc--desktop" aria-label="Table of contents">
-              <TocList items={data.tableOfContents} />
-            </nav>
-
-            <details className="blog-toc-mobile">
-              <summary>Lihat navigasi konten</summary>
-              <nav className="blog-toc blog-toc--mobile" aria-label="Table of contents mobile">
-                <TocList items={data.tableOfContents} />
-              </nav>
-            </details>
-
-            <div className="blog-category-badges" aria-label="Article categories">
-              {data.categoryBadges.map((badge) => (
-                <span key={badge} className="blog-category-badges__item">
-                  {badge}
-                </span>
-              ))}
-            </div>
-          </section>
-        </aside>
+        <BlogArticleTocSidebar tableOfContents={data.tableOfContents} categoryBadges={data.categoryBadges} />
 
         <article className="blog-article-main" data-article-scroll aria-label="Article content">
           <div className="blog-article-content">
@@ -120,45 +84,10 @@ export function BlogArticlePage({ site, data }: BlogArticlePageProps) {
           </div>
         </article>
 
-        <aside className="blog-sidebar blog-sidebar--right" aria-label="Recommended articles sidebar">
-          <section className="blog-side-card" aria-labelledby="related-heading">
-            <h2 id="related-heading" className="blog-side-card__title">
-              Related Articles
-            </h2>
-            <ul className="blog-article-list">
-              {data.rightSidebar.relatedArticles.map((article) => (
-                <li key={article.title}>
-                  <Link href="#" className="blog-mini-card">
-                    <Image className="blog-mini-card__thumb" src={article.image} alt={article.alt} width={400} height={400} />
-                    <span className="blog-mini-card__body">
-                      <span className="blog-mini-card__title-link">{article.title}</span>
-                      <span className="blog-mini-card__meta">{article.readTime}</span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="blog-side-card" aria-labelledby="popular-heading">
-            <h2 id="popular-heading" className="blog-side-card__title">
-              Popular Article
-            </h2>
-            <ul className="blog-article-list">
-              {data.rightSidebar.popularArticles.map((article) => (
-                <li key={article.title}>
-                  <Link href="#" className="blog-mini-card">
-                    <Image className="blog-mini-card__thumb" src={article.image} alt={article.alt} width={400} height={400} />
-                    <span className="blog-mini-card__body">
-                      <span className="blog-mini-card__title-link">{article.title}</span>
-                      <span className="blog-mini-card__meta">{article.readTime}</span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </aside>
+        <BlogArticleRecommendationsSidebar
+          relatedArticles={data.rightSidebar.relatedArticles}
+          popularArticles={data.rightSidebar.popularArticles}
+        />
       </main>
 
       <SiteFooter site={site} />

@@ -2,8 +2,8 @@ import { BlogHero } from "@/features/blogs/components/BlogHero";
 import { BlogPostCard } from "@/features/blogs/components/BlogPostCard";
 import { BlogSearchBox } from "@/features/blogs/components/BlogSearchBox";
 import { NewsletterSection } from "@/features/blogs/components/NewsletterSection";
-import { SiteFooter } from "@/features/blogs/components/SiteFooter";
-import { SiteHeader } from "@/features/blogs/components/SiteHeader";
+import { SiteFooter } from "@/features/global/components/SiteFooter";
+import { SiteHeader } from "@/features/global/components/SiteHeader";
 import type { BlogPageData, SiteData } from "@/features/blogs/types/blog.type";
 import Link from "next/link";
 

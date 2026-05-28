@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import cetakiaFavicon from "./cetakia.webp";
+import { FloatingActions } from "@/features/global/components/FloatingActions";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" className="h-full antialiased">
+    <html lang="en" data-theme="light" className={`${inter.variable} h-full antialiased`}>
       <head>
         <link
           rel="stylesheet"
@@ -30,6 +38,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         {children}
+        <FloatingActions />
       </body>
     </html>
   );

@@ -4,13 +4,9 @@
 :root {
   --background: var(--ui-surface-page, #f8fafc);
   --foreground: var(--ui-text-primary, #1e293b);
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: var(--font-inter), "Inter", sans-serif;
 }
 
 body {

@@ -1,8 +1,8 @@
 import { BlogHero } from "@/features/blogs/components/BlogHero";
 import { BlogPostCard } from "@/features/blogs/components/BlogPostCard";
 import { NewsletterSection } from "@/features/blogs/components/NewsletterSection";
-import { SiteFooter } from "@/features/blogs/components/SiteFooter";
-import { SiteHeader } from "@/features/blogs/components/SiteHeader";
+import { SiteFooter } from "@/features/global/components/SiteFooter";
+import { SiteHeader } from "@/features/global/components/SiteHeader";
 import type { BlogArticleCard, CategoryPageData, SiteData } from "@/features/blogs/types/blog.type";
 
 type BlogCategoryPageProps = {

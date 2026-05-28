@@ -73,14 +73,14 @@
       "title": "Subscribe to Our Newsletter",
       "description": "Get curated weekly updates about product releases, educational guides, and community stories.",
       "fieldLabel": "Email address",
-      "placeholder": "you@company.com",
+      "placeholder": "your@email.com",
       "submitLabel": "Subscribe"
     }
   },
   "pages": {
     "blogPage": {
       "seo": {
-        "title": "The Cetakia Blog | Product, Education, and Community Insights",
+        "title": "Cetakia's Blog | Product, Education, and Community Insights",
         "description": "Discover all Cetakia blog posts across product updates, education content, and community stories in one place.",
         "robots": "index, follow",
         "author": "Cetakia",
@@ -88,12 +88,12 @@
         "og": {
           "type": "website",
           "siteName": "Cetakia Blog",
-          "title": "The Cetakia Blog",
+          "title": "Cetakia's Blog",
           "description": "Explore all articles from Cetakia: product updates, educational guides, and community stories."
         }
       },
       "hero": {
-        "title": "The Cetakia Blog",
+        "title": "Cetakia's Blog",
         "subtitle": "Product updates, educational insights, and community stories to help your printing business scale faster."
       },
       "search": {

@@ -1,0 +1,74 @@
+.nf-page {
+  background:
+    radial-gradient(circle at 10% 10%, rgb(35 154 232 / 0.14), transparent 36%),
+    radial-gradient(circle at 90% 18%, rgb(16 185 129 / 0.12), transparent 34%),
+    var(--ui-surface-page);
+}
+
+.nf-panel {
+  backdrop-filter: blur(4px);
+  background: color-mix(in srgb, var(--ui-surface-card) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ui-border-subtle) 82%, transparent);
+  box-shadow: 0 28px 64px -44px rgb(15 23 42 / 0.55);
+}
+
+.nf-code {
+  background: linear-gradient(145deg, var(--ui-color-primary), color-mix(in srgb, var(--ui-color-primary) 62%, #14b8a6 38%));
+  background-clip: text;
+  color: transparent;
+  font-size: clamp(4.5rem, 16vw, 8.5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.nf-btn {
+  align-items: center;
+  background: var(--ui-solid-button-bg);
+  border: 1px solid var(--ui-solid-button-bg);
+  border-radius: 0.85rem;
+  color: var(--ui-solid-button-text);
+  display: inline-flex;
+  font-size: 0.96rem;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 2.65rem;
+  min-width: 9.8rem;
+  padding: 0.52rem 1rem;
+  text-decoration: none;
+}
+
+.nf-btn:hover {
+  background: var(--ui-solid-button-bg-hover);
+  border-color: var(--ui-solid-button-bg-hover);
+  color: var(--ui-solid-button-text-hover);
+}
+
+.nf-btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--ui-color-primary-ring);
+  outline: none;
+}
+
+.nf-orb {
+  aspect-ratio: 1;
+  border-radius: 999px;
+  filter: blur(4px);
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+.nf-orb--one {
+  background: radial-gradient(circle, color-mix(in srgb, var(--ui-color-primary) 36%, transparent) 0%, transparent 74%);
+  left: -6rem;
+  top: 8%;
+  width: clamp(11rem, 24vw, 19rem);
+}
+
+.nf-orb--two {
+  background: radial-gradient(circle, color-mix(in srgb, #14b8a6 34%, transparent) 0%, transparent 74%);
+  bottom: -5rem;
+  right: -4rem;
+  width: clamp(10rem, 20vw, 16rem);
+}

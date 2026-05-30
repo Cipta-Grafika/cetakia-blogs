@@ -1,8 +1,10 @@
-import type { TocNode } from "@/features/blogs/types/blog.type";
+import { SocialLinksRow } from "@/features/global/components/SocialLinksRow";
+import type { NavLink, TocNode } from "@/features/blogs/types/blog.type";
 
 type BlogArticleTocSidebarProps = {
   tableOfContents: TocNode[];
   categoryBadges: string[];
+  shareLinks: NavLink[];
 };
 
 function TocList({ items, nested = false }: { items: TocNode[]; nested?: boolean }) {
@@ -18,7 +20,7 @@ function TocList({ items, nested = false }: { items: TocNode[]; nested?: boolean
   );
 }
 
-export function BlogArticleTocSidebar({ tableOfContents, categoryBadges }: BlogArticleTocSidebarProps) {
+export function BlogArticleTocSidebar({ tableOfContents, categoryBadges, shareLinks }: BlogArticleTocSidebarProps) {
   return (
     <aside className="blog-sidebar blog-sidebar--left" aria-label="Table of contents sidebar">
       <section className="blog-side-card blog-side-card--toc" aria-labelledby="toc-heading">
@@ -45,7 +47,19 @@ export function BlogArticleTocSidebar({ tableOfContents, categoryBadges }: BlogA
           ))}
         </div>
       </section>
+
+      <section className="blog-side-card blog-side-card--share" aria-labelledby="share-heading">
+        <h2 id="share-heading" className="blog-side-card__title">
+          Share
+        </h2>
+
+        <SocialLinksRow
+          links={shareLinks}
+          className="blog-share-links"
+          linkClassName="blog-share-links__item"
+          ariaLabel="Share this article"
+        />
+      </section>
     </aside>
   );
 }
-

@@ -19,6 +19,15 @@ function BlogArticleTeaserList({
   title: string;
   items: ArticleTeaser[];
 }) {
+  const getOptimizedImageSrc = (src: string) => {
+    if (!src.includes("images.unsplash.com") || src.includes("h=")) {
+      return src;
+    }
+
+    const separator = src.includes("?") ? "&" : "?";
+    return `${src}${separator}h=400`;
+  };
+
   return (
     <section className="blog-side-card" aria-labelledby={headingId}>
       <h2 id={headingId} className="blog-side-card__title">
@@ -28,7 +37,15 @@ function BlogArticleTeaserList({
         {items.map((article) => (
           <li key={article.title}>
             <Link href="#" className="blog-mini-card">
-              <Image className="blog-mini-card__thumb" src={article.image} alt={article.alt} width={400} height={400} />
+              <Image
+                className="blog-mini-card__thumb"
+                src={getOptimizedImageSrc(article.image)}
+                alt={article.alt}
+                width={400}
+                height={400}
+                quality={68}
+                sizes="67px"
+              />
               <span className="blog-mini-card__body">
                 <span className="blog-mini-card__title-link">{article.title}</span>
                 <span className="blog-mini-card__meta">{article.readTime}</span>
@@ -49,4 +66,3 @@ export function BlogArticleRecommendationsSidebar({ relatedArticles, popularArti
     </aside>
   );
 }
-

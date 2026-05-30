@@ -3,6 +3,7 @@ import { BlogPostCard } from "@/features/blogs/components/BlogPostCard";
 import { NewsletterSection } from "@/features/blogs/components/NewsletterSection";
 import { SiteFooter } from "@/features/global/components/SiteFooter";
 import { SiteHeader } from "@/features/global/components/SiteHeader";
+import { UiIcon } from "@/features/global/components/UiIcon";
 import type { BlogArticleCard, CategoryPageData, SiteData } from "@/features/blogs/types/blog.type";
 
 type BlogCategoryPageProps = {
@@ -13,7 +14,7 @@ type BlogCategoryPageProps = {
 
 export function BlogCategoryPage({ site, data, cards }: BlogCategoryPageProps) {
   return (
-    <div className="bg-[var(--ui-surface-page)] text-[var(--ui-text-primary)]">
+    <div className="bp-shell bg-[var(--ui-surface-page)] text-[var(--ui-text-primary)]">
       <SiteHeader site={site} />
       <BlogHero
         title={data.hero.title}
@@ -28,7 +29,7 @@ export function BlogCategoryPage({ site, data, cards }: BlogCategoryPageProps) {
                   <a href={crumb.href ?? "#"}>{crumb.label}</a>
                 )}
                 {index < data.hero.breadcrumbs.length - 1 ? (
-                  <i className={`bi ${data.hero.breadcrumbSeparatorIcon}`} aria-hidden="true" />
+                  <UiIcon name={data.hero.breadcrumbSeparatorIcon} />
                 ) : null}
               </span>
             ))}
@@ -45,8 +46,14 @@ export function BlogCategoryPage({ site, data, cards }: BlogCategoryPageProps) {
             </div>
 
             <div className="bp-post-grid">
-              {cards.map((article) => (
-                <BlogPostCard key={article.title} article={article} href="/blogs/erp-pengertian-fungsi-dan-manfaatnya-dalam-bisnis-percetakan" />
+              {cards.map((article, index) => (
+                <BlogPostCard
+                  key={article.title}
+                  article={article}
+                  href="/blogs/erp-pengertian-fungsi-dan-manfaatnya-dalam-bisnis-percetakan"
+                  priority={index === 0}
+                  fetchPriority={index === 0 ? "high" : undefined}
+                />
               ))}
             </div>
           </section>
@@ -61,7 +68,7 @@ export function BlogCategoryPage({ site, data, cards }: BlogCategoryPageProps) {
                 );
               }
 
-              const icon = item.icon ? <i className={`bi ${item.icon}`} aria-hidden="true" /> : null;
+              const icon = item.icon ? <UiIcon name={item.icon} /> : null;
               const className = [
                 "bc-page-btn",
                 item.active ? "is-active" : "",

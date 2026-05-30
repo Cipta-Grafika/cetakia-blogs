@@ -33,5 +33,5 @@ export default async function BlogDetailEnglishPage({ params }: PageProps) {
 
   if (!page) notFound();
 
-  return <BlogArticlePage site={site} data={page} />;
+  return <BlogArticlePage site={site} data={page} articlePath={`/blogs/en/${slug}`} />;
 }

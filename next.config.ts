@@ -1,10 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    browserDebugInfoInTerminal: false,
+  logging: {
+    browserToTerminal: false,
   },
   images: {
+    qualities: [72, 75],
     remotePatterns: [
       {
         protocol: "https",
@@ -21,6 +22,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "www.ciptagrafika.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
       },
     ],
   },

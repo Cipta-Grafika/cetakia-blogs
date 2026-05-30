@@ -36,10 +36,10 @@
   }
 
   .c-button-demo .c-btn {
-    --_btn-solid-bg: var(--ui-color-primary);
-    --_btn-solid-bg-hover: var(--ui-color-primary-hover);
+    --_btn-solid-bg: var(--ui-solid-button-bg);
+    --_btn-solid-bg-hover: var(--ui-solid-button-bg-hover);
     --_btn-solid-bg-active: var(--ui-color-primary-active);
-    --_btn-solid-text: var(--ui-color-white);
+    --_btn-solid-text: var(--ui-solid-button-text);
 
     --_btn-outline-text: var(--ui-color-primary);
     --_btn-outline-border: var(--ui-color-primary);
@@ -61,11 +61,6 @@
     justify-content: center;
     line-height: var(--ui-btn-line-height);
     text-decoration: none;
-    transition:
-      background-color var(--ui-btn-transition-duration) var(--ui-btn-transition-easing),
-      border-color var(--ui-btn-transition-duration) var(--ui-btn-transition-easing),
-      color var(--ui-btn-transition-duration) var(--ui-btn-transition-easing),
-      transform var(--ui-btn-transition-duration) var(--ui-btn-transition-easing);
     white-space: nowrap;
   }
 
@@ -193,8 +188,8 @@
   }
 
   .c-button-demo .c-btn--primary {
-    --_btn-solid-bg: var(--ui-color-primary);
-    --_btn-solid-bg-hover: var(--ui-color-primary-hover);
+    --_btn-solid-bg: var(--ui-solid-button-bg);
+    --_btn-solid-bg-hover: var(--ui-solid-button-bg-hover);
     --_btn-solid-bg-active: var(--ui-color-primary-active);
     --_btn-outline-text: var(--ui-color-primary);
     --_btn-outline-border: var(--ui-color-primary);

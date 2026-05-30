@@ -1,0 +1,237 @@
+@keyframes uiRevealUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes uiRevealUpSoft {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lpFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.lp-hero-intro > * {
+  animation: uiRevealUp 0.62s ease both;
+}
+
+.lp-hero-intro > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.lp-hero-intro > *:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+.lp-hero-intro > *:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.lp-hero-intro > *:nth-child(5) {
+  animation-delay: 0.26s;
+}
+
+.lp-hero-card--floating {
+  animation: lpFloat 4.8s ease-in-out infinite;
+}
+
+.lp-price-card--reveal {
+  animation-duration: 0.56s;
+  animation-fill-mode: both;
+  animation-timing-function: ease;
+}
+
+.lp-pricing-grid--annual .lp-price-card--reveal {
+  animation-name: uiRevealUp;
+}
+
+.lp-pricing-grid--monthly .lp-price-card--reveal {
+  animation-name: uiRevealUpSoft;
+}
+
+.lp-pricing-grid .lp-price-card--reveal:nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.lp-pricing-grid .lp-price-card--reveal:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.lp-pricing-grid .lp-price-card--reveal:nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+.lp-pricing-grid .lp-price-card--reveal:nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+.ct-layout__intro > * {
+  animation: uiRevealUp 0.62s ease both;
+}
+
+.ct-layout__intro > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.ct-layout__intro > *:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+.ct-layout__form {
+  animation: uiRevealUpSoft 0.66s ease both;
+  animation-delay: 0.18s;
+}
+
+.ct-layout__cards {
+  animation: uiRevealUpSoft 0.66s ease both;
+  animation-delay: 0.24s;
+}
+
+.ct-map {
+  animation: uiRevealUpSoft 0.7s ease both;
+  animation-delay: 0.3s;
+}
+
+.lp-btn {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.lp-feature-card,
+.lp-price-card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.lp-quote-body {
+  transition: opacity 0.48s ease, transform 0.48s ease;
+}
+
+.lp-billing-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.ct-form__submit {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.bp-post-card__image-wrap img {
+  transition: transform 280ms ease;
+}
+
+@media (max-width: 767px) {
+  .bp-post-grid-wrap::after {
+    transition: opacity 180ms ease;
+  }
+}
+
+.blog-info-bar__link {
+  transition: color 160ms ease;
+}
+
+.blog-info-bar__link::after {
+  transition: transform 180ms ease;
+}
+
+.blog-site-nav__link {
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.blog-site-nav__cta {
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.blog-site-nav__theme {
+  transition: color 160ms ease;
+}
+
+.blog-site-nav__hamburger {
+  transition: color 160ms ease;
+}
+
+.blog-site-nav__hamburger-lines span {
+  transition: transform 200ms ease, opacity 160ms ease;
+}
+
+.blog-nav-mobile {
+  transition: max-height 220ms ease, opacity 200ms ease;
+}
+
+.blog-nav-mobile__link {
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.blog-site-footer__link {
+  transition: color 160ms ease;
+}
+
+.blog-site-footer__social-link {
+  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.blog-site-footer__brand-link {
+  transition: color 160ms ease;
+}
+
+.gc-card--interactive {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.blog-mini-card {
+  transition: transform 160ms ease;
+}
+
+.blog-mini-card__title-link {
+  transition: color 160ms ease;
+}
+
+.blog-float {
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.c-button-demo .c-btn {
+  transition:
+    background-color var(--ui-btn-transition-duration) var(--ui-btn-transition-easing),
+    border-color var(--ui-btn-transition-duration) var(--ui-btn-transition-easing),
+    color var(--ui-btn-transition-duration) var(--ui-btn-transition-easing),
+    transform var(--ui-btn-transition-duration) var(--ui-btn-transition-easing);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-feature-card,
+  .lp-price-card,
+  .lp-btn,
+  .lp-quote-body,
+  .lp-hero-intro > *,
+  .lp-hero-card--floating,
+  .lp-price-card--reveal,
+  .ct-layout__intro > *,
+  .ct-layout__form,
+  .ct-layout__cards,
+  .ct-map,
+  .blog-float,
+  .blog-article-header,
+  .blog-article-header *,
+  .blog-mini-card,
+  .blog-mini-card__title-link {
+    animation: none;
+    transition: none;
+  }
+}

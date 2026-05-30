@@ -50,7 +50,10 @@ export function getBlogCategoryPageData(): CategoryPageData {
 }
 
 export function getAllBlogCards(): BlogArticleCard[] {
-  const fromListing = blogsData.pages.blogPage.sections.flatMap((section) => section.articles);
+  const fromListing = blogsData.pages.blogPage.sections.reduce<BlogArticleCard[]>((accumulator, section) => {
+    accumulator.push(...section.articles);
+    return accumulator;
+  }, []);
   const fromCategory = blogsData.pages.blogCategoryPage.articles;
 
   const dedupedByTitle = new Map<string, BlogArticleCard>();

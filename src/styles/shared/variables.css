@@ -24,6 +24,13 @@
   --ui-color-primary-soft: #e9f6fe;
   --ui-color-primary-soft-active: #d9eefb;
   --ui-color-primary-ring: rgb(35 154 232 / 0.34);
+  --ui-info-bar-bg: #99d3ff;
+  --ui-info-bar-text: #0a2958;
+  --ui-info-bar-text-hover: #0a2650;
+  --ui-solid-button-bg: #99d3ff;
+  --ui-solid-button-bg-hover: var(--ui-color-accent-hover);
+  --ui-solid-button-text: #0a2958;
+  --ui-solid-button-text-hover: #0a2650;
 
   --ui-color-secondary: #6b7280;
   --ui-color-secondary-hover: #4b5563;
@@ -133,6 +140,13 @@
   --blog-content-text-color: #566784;
   --blog-figure-border: #cdd8e5;
   --blog-figure-caption-color: #5f7395;
+  --blog-video-bg: #f3f7fc;
+  --blog-video-border: #cdd8e5;
+  --blog-video-caption-color: #425b7f;
+  --blog-table-border: #cdd8e5;
+  --blog-table-head-bg: #eaf2fb;
+  --blog-table-stripe-bg: #f6f9fd;
+  --blog-table-caption-color: #5f7395;
   --blog-read-also-bg: #edf5ff;
   --blog-mini-card-bg: #f8fbff;
   --blog-mini-card-border: #d8e2ef;
@@ -156,6 +170,13 @@
   --ui-color-primary-soft: #10283a;
   --ui-color-primary-soft-active: #15354d;
   --ui-color-primary-ring: rgb(51 180 244 / 0.4);
+  --ui-info-bar-bg: var(--ui-color-accent-active);
+  --ui-info-bar-text: #fff;
+  --ui-info-bar-text-hover: #fff;
+  --ui-solid-button-bg: var(--ui-color-accent-active);
+  --ui-solid-button-bg-hover: var(--ui-color-accent-hover);
+  --ui-solid-button-text: #020617;
+  --ui-solid-button-text-hover: #020617;
 
   --ui-color-secondary: #475569;
   --ui-color-secondary-hover: #64748b;
@@ -228,6 +249,13 @@
   --blog-content-text-color: #a7bdd7;
   --blog-figure-border: #2a3f5c;
   --blog-figure-caption-color: #9ab2ce;
+  --blog-video-bg: #0f2038;
+  --blog-video-border: #2a3f5c;
+  --blog-video-caption-color: #c2d6ec;
+  --blog-table-border: #2a3f5c;
+  --blog-table-head-bg: #132a46;
+  --blog-table-stripe-bg: #11243d;
+  --blog-table-caption-color: #9ab2ce;
   --blog-read-also-bg: #10283f;
   --blog-mini-card-bg: #12253e;
   --blog-mini-card-border: #2a3f5c;
@@ -247,6 +275,9 @@
     --ui-color-primary-soft: #10283a;
     --ui-color-primary-soft-active: #15354d;
     --ui-color-primary-ring: rgb(51 180 244 / 0.4);
+    --ui-info-bar-bg: var(--ui-color-accent-active);
+    --ui-info-bar-text: #fff;
+    --ui-info-bar-text-hover: #fff;
 
     --ui-color-secondary: #475569;
     --ui-color-secondary-hover: #64748b;
@@ -319,6 +350,13 @@
     --blog-content-text-color: #a7bdd7;
     --blog-figure-border: #2a3f5c;
     --blog-figure-caption-color: #9ab2ce;
+    --blog-video-bg: #0f2038;
+    --blog-video-border: #2a3f5c;
+    --blog-video-caption-color: #c2d6ec;
+    --blog-table-border: #2a3f5c;
+    --blog-table-head-bg: #132a46;
+    --blog-table-stripe-bg: #11243d;
+    --blog-table-caption-color: #9ab2ce;
     --blog-read-also-bg: #10283f;
     --blog-mini-card-bg: #12253e;
     --blog-mini-card-border: #2a3f5c;

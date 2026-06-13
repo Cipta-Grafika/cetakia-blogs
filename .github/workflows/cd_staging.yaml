@@ -29,6 +29,8 @@ jobs:
             BRANCH="staging"
             PORT="3001"
 
+            REPO_URL="https://github.com/Cipta-Grafika/cetakia-blogs.git"
+
             SRC_DIR="$HOME/cetakia-public-staging-src"
             BASE_DIR="/var/www/cetakia-public-staging"
             RELEASES_DIR="$BASE_DIR/releases"
@@ -46,15 +48,16 @@ jobs:
             echo "PM2 version: $(pm2 -v)"
 
             echo "Starting Next.js SSR staging deployment..."
+            echo "Repository: $REPO_URL"
+            echo "Branch: $BRANCH"
             echo "Release ID: $RELEASE_ID"
 
             echo "Ensuring deployment directories..."
             mkdir -p "$RELEASES_DIR" "$SHARED_DIR"
 
             if [ ! -d "$SRC_DIR/.git" ]; then
-              echo "Source directory not found."
-              echo "Please clone the repository manually first into: $SRC_DIR"
-              exit 1
+              echo "Source repository not found. Cloning public repository..."
+              git clone -b "$BRANCH" "$REPO_URL" "$SRC_DIR"
             fi
 
             echo "Pulling latest code from $BRANCH..."

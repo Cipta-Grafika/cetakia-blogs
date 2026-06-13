@@ -53,14 +53,53 @@
   padding: 0;
 }
 
+.blog-site-footer__contact-list {
+  display: grid;
+  gap: 0.58rem;
+  list-style: none;
+  margin: 1.35rem 0 0;
+  padding: 0;
+}
+
 .blog-site-footer__link {
   color: var(--blog-content-text-color);
   font-size: 0.9rem;
   text-decoration: none;
 }
 
+.blog-site-footer__contact-link {
+  align-items: center;
+  color: var(--blog-content-text-color);
+  display: inline-flex;
+  font-size: clamp(0.9rem, 0.96vw, 1rem);
+  font-weight: 500;
+  gap: 0.58rem;
+  line-height: 1.35;
+  min-width: 0;
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.blog-site-footer__contact-icon {
+  flex: 0 0 auto;
+  height: 1.08em;
+  width: 1.08em;
+}
+
+.blog-site-footer__contact-link--whatsapp,
+.blog-site-footer__contact-link--email {
+  color: var(--blog-content-text-color);
+}
+
+.blog-site-footer__contact-link--whatsapp:hover,
+.blog-site-footer__contact-link--email:hover {
+  color: var(--ui-color-primary-hover);
+}
+
 .blog-site-footer__link:hover {
-  color: var(--blog-link-color);
+  color: var(--ui-color-primary-hover);
 }
 
 .blog-site-footer__bottom {
@@ -73,7 +112,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
-  margin-top: 0.2rem;
+  margin-top: 0.35rem;
+}
+
+.blog-site-footer__contact-list + .blog-site-footer__social {
+  margin-top: 1.45rem;
 }
 
 .blog-site-footer__social-link {

@@ -94,7 +94,7 @@ export function LandingPageClient({ site, contentRoot }: LandingPageClientProps)
       <SiteHeader
         site={localizedSite}
         navLinks={contentRoot.header.navLinks}
-        startNowHref="/#pricing"
+        startNowHref="/login"
         drawerId="landing-nav-drawer"
         languageToggle={{
           label: content.header.languageToggleLabel,

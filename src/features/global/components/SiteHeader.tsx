@@ -7,6 +7,13 @@ import type { NavLink, SiteData } from "@/features/blogs/types/blog.type";
 import { InformationBar } from "@/features/global/components/InformationBar";
 import { ThemeLogo } from "@/features/global/components/ThemeLogo";
 import { UiIcon } from "@/features/global/components/UiIcon";
+import {
+  DARK_THEME_BACKGROUND,
+  LIGHT_THEME_BACKGROUND,
+  THEME_COOKIE_KEY,
+  THEME_STORAGE_KEY,
+  type UiTheme,
+} from "@/features/global/constants/uiBootstrap";
 
 type SiteHeaderProps = {
   site: SiteData;
@@ -39,6 +46,31 @@ const getStickyHeaderOffset = () => {
   return infoBarHeight + navHeight;
 };
 
+const isUiTheme = (theme: string | null): theme is UiTheme => theme === "dark" || theme === "light";
+
+const getCurrentTheme = (): UiTheme => {
+  const rootTheme = document.documentElement.getAttribute("data-theme");
+
+  if (isUiTheme(rootTheme)) {
+    return rootTheme;
+  }
+
+  const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+  return isUiTheme(storedTheme) ? storedTheme : "dark";
+};
+
+const applyTheme = (theme: UiTheme) => {
+  const background = theme === "dark" ? DARK_THEME_BACKGROUND : LIGHT_THEME_BACKGROUND;
+
+  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.style.colorScheme = theme;
+  document.documentElement.style.backgroundColor = background;
+  document.body.style.backgroundColor = background;
+  window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  document.cookie = `${THEME_COOKIE_KEY}=${theme};path=/;max-age=31536000;samesite=lax`;
+  window.dispatchEvent(new CustomEvent("bp-theme-change", { detail: { theme } }));
+};
+
 export function SiteHeader({
   site,
   navLinks,
@@ -48,6 +80,7 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const primaryLinks = navLinks ?? site.primaryNavigation;
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const sectionIds = useMemo(
     () => Array.from(new Set(primaryLinks.map((link) => getHashSectionId(link.href)).filter((id): id is string => Boolean(id)))),
     [primaryLinks],
@@ -62,6 +95,10 @@ export function SiteHeader({
   const darkThemeIconName = toIconName(darkThemeIcon);
   const normalizeHeaderHref = (href: string) => (href.startsWith("#") ? `/${href}` : href);
   const languageIconName = languageToggle ? toIconName(languageToggle.icon) : null;
+  const handleThemeToggle = () => {
+    const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+  };
 
   useEffect(() => {
     if (sectionIds.length === 0) {
@@ -110,6 +147,24 @@ export function SiteHeader({
       window.removeEventListener("hashchange", scheduleUpdate);
     };
   }, [sectionIds]);
+
+  useEffect(() => {
+    if (!isMobileNavOpen) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileNavOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMobileNavOpen]);
 
   return (
     <>
@@ -161,7 +216,7 @@ export function SiteHeader({
                 type="button"
                 className="blog-site-nav__theme hidden lg:inline-flex"
                 aria-label="Toggle theme"
-                data-theme-toggle
+                onClick={handleThemeToggle}
               >
                 <UiIcon name={lightThemeIconName} className="blog-site-nav__theme-icon blog-site-nav__theme-icon--light" />
                 <UiIcon name={darkThemeIconName} className="blog-site-nav__theme-icon blog-site-nav__theme-icon--dark" />
@@ -183,7 +238,7 @@ export function SiteHeader({
                 type="button"
                 className="blog-site-nav__theme inline-flex lg:hidden"
                 aria-label="Toggle theme"
-                data-theme-toggle
+                onClick={handleThemeToggle}
               >
                 <UiIcon name={lightThemeIconName} className="blog-site-nav__theme-icon blog-site-nav__theme-icon--light" />
                 <UiIcon name={darkThemeIconName} className="blog-site-nav__theme-icon blog-site-nav__theme-icon--dark" />
@@ -203,11 +258,11 @@ export function SiteHeader({
 
               <button
                 type="button"
-                className="blog-site-nav__hamburger inline-flex lg:hidden"
-                aria-label="Open navigation menu"
+                className={`blog-site-nav__hamburger inline-flex lg:hidden${isMobileNavOpen ? " is-open" : ""}`}
+                aria-label={isMobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-controls={drawerId}
-                aria-expanded="false"
-                data-nav-toggle
+                aria-expanded={isMobileNavOpen}
+                onClick={() => setIsMobileNavOpen((isOpen) => !isOpen)}
               >
                 <span className="blog-site-nav__hamburger-lines" aria-hidden="true">
                   <span />
@@ -220,7 +275,7 @@ export function SiteHeader({
         </div>
       </header>
 
-      <div className="blog-nav-mobile lg:hidden" id={drawerId} aria-hidden="true" data-nav-mobile>
+      <div className={`blog-nav-mobile lg:hidden${isMobileNavOpen ? " is-open" : ""}`} id={drawerId} aria-hidden={!isMobileNavOpen}>
         <div className="blog-container">
           <div className="blog-nav-mobile__inner">
             <nav className="blog-nav-mobile__menu" aria-label="Mobile and tablet navigation">
@@ -234,7 +289,7 @@ export function SiteHeader({
                     href={normalizeHeaderHref(link.href)}
                     className={`blog-nav-mobile__link${isActive ? " is-active" : ""}`}
                     aria-current={isActive ? "location" : undefined}
-                    data-nav-close
+                    onClick={() => setIsMobileNavOpen(false)}
                   >
                     {link.label}
                   </a>
@@ -246,7 +301,7 @@ export function SiteHeader({
               <a
                 href={normalizeHeaderHref(startNowHref ?? site.headerActions.startNow.href)}
                 className="blog-site-nav__cta blog-site-nav__cta--solid inline-flex items-center justify-center"
-                data-nav-close
+                onClick={() => setIsMobileNavOpen(false)}
               >
                 {site.headerActions.startNow.label}
               </a>

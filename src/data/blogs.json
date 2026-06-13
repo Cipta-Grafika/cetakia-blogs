@@ -44,6 +44,10 @@
     },
     "footer": {
       "description": "A professional ERP platform for printing businesses that need clarity, speed, and scalable control.",
+      "contactLinks": [
+        { "label": "+62 889-8617-9658", "href": "https://wa.me/6288986179658", "icon": "bi-whatsapp" },
+        { "label": "sales@cetakia.com", "href": "mailto:sales@cetakia.com", "icon": "bi-envelope-fill" }
+      ],
       "socialLinks": [
         { "label": "LinkedIn", "href": "https://www.linkedin.com", "icon": "bi-linkedin" },
         { "label": "YouTube", "href": "https://www.youtube.com", "icon": "bi-youtube" },
@@ -62,19 +66,23 @@
           ]
         },
         {
-          "title": "Platform Areas",
-          "items": [
-            "Sales and Delivery",
-            "Production Jobs",
-            "Purchasing and Vendors",
-            "Accounting and Reports"
+          "title": "Resources",
+          "links": [
+            { "label": "Blog", "href": "/blogs" },
+            { "label": "FAQ", "href": "/#faq" },
+            { "label": "Documentation", "href": "/documentation" },
+            { "label": "Video Tutorial", "href": "/video-tutorial" },
+            { "label": "Sitemap", "href": "/sitemap.xml" }
           ]
         },
         {
-          "title": "Get Started",
+          "title": "Company",
           "links": [
-            { "label": "sales@cetakia.com", "href": "mailto:sales@cetakia.com" },
-            { "label": "+62 889-8617-9658", "href": "tel:+6288986179658" }
+            { "label": "About Us", "href": "/about" },
+            { "label": "Contact Us", "href": "/contact-us" },
+            { "label": "Events", "href": "/events" },
+            { "label": "Career", "href": "/career" },
+            { "label": "Partnership", "href": "/partnership" }
           ]
         }
       ],

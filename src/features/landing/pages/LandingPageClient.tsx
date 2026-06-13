@@ -43,6 +43,7 @@ function buildLocalizedSite(site: SiteData, contentRoot: LandingContentRoot, con
     footer: {
       ...site.footer,
       description: content.footer.description,
+      contactLinks: contentRoot.footer.contactLinks ?? site.footer.contactLinks,
       columns: contentRoot.footer.columns,
       bottom: {
         copyright: contentRoot.footer.copyright,

@@ -140,6 +140,7 @@ export type LandingContentRoot = {
   informationBar: InformationBarData;
   footer: {
     columns: FooterColumn[];
+    contactLinks?: NavLink[];
     copyright: string;
     bottomLinks: NavLink[];
   };

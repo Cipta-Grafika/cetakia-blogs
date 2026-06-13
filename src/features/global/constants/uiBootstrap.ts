@@ -1,7 +1,7 @@
 export type UiTheme = "light" | "dark";
 
-export const THEME_STORAGE_KEY = "bp_theme_v2";
-export const THEME_COOKIE_KEY = "bp_theme_v2";
+export const THEME_STORAGE_KEY = "theme";
+export const THEME_COOKIE_KEY = "theme";
 export const LIGHT_THEME_BACKGROUND = "#f8fafc";
 export const DARK_THEME_BACKGROUND = "#081734";
 

@@ -5,6 +5,7 @@ import Script from "next/script";
 import "./globals.css";
 import cetakiaFavicon from "./cetakia.webp";
 import { FloatingActions } from "@/features/global/components/FloatingActions";
+import { GlobalClientEffects } from "@/features/global/components/GlobalClientEffects";
 import {
   DARK_THEME_BACKGROUND,
   EARLY_THEME_BOOT_SCRIPT,
@@ -56,9 +57,9 @@ export default async function RootLayout({
       <head>
         <style dangerouslySetInnerHTML={{ __html: EARLY_THEME_BOOT_STYLE }} />
         <Script id="early-theme-boot" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: EARLY_THEME_BOOT_SCRIPT }} />
-        <Script src="/scripts/ui-scripts.js" strategy="lazyOnload" />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <GlobalClientEffects />
         {children}
         <FloatingActions />
       </body>

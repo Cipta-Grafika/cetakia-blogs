@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 
 import type { NavLink, SiteData } from "@/features/blogs/types/blog.type";
 import { InformationBar } from "@/features/global/components/InformationBar";
@@ -20,6 +21,24 @@ type SiteHeaderProps = {
   };
 };
 
+const getHashSectionId = (href: string) => {
+  const hashIndex = href.indexOf("#");
+  if (hashIndex < 0) {
+    return null;
+  }
+
+  const hash = href.slice(hashIndex + 1).trim();
+  return hash.length > 0 ? decodeURIComponent(hash) : null;
+};
+
+const getStickyHeaderOffset = () => {
+  const rootStyles = getComputedStyle(document.documentElement);
+  const infoBarHeight = Number.parseFloat(rootStyles.getPropertyValue("--blog-info-bar-sticky-height")) || 0;
+  const navHeight = Number.parseFloat(rootStyles.getPropertyValue("--blog-nav-sticky-height")) || 0;
+
+  return infoBarHeight + navHeight;
+};
+
 export function SiteHeader({
   site,
   navLinks,
@@ -28,6 +47,11 @@ export function SiteHeader({
   languageToggle,
 }: SiteHeaderProps) {
   const primaryLinks = navLinks ?? site.primaryNavigation;
+  const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const sectionIds = useMemo(
+    () => Array.from(new Set(primaryLinks.map((link) => getHashSectionId(link.href)).filter((id): id is string => Boolean(id)))),
+    [primaryLinks],
+  );
   const logoLight = site.brand.logoLight ?? site.brand.logo;
   const logoDark = site.brand.logoDark ?? site.brand.logo;
   const lightThemeIcon = site.headerActions.themeToggleIcons.light;
@@ -38,6 +62,54 @@ export function SiteHeader({
   const darkThemeIconName = toIconName(darkThemeIcon);
   const normalizeHeaderHref = (href: string) => (href.startsWith("#") ? `/${href}` : href);
   const languageIconName = languageToggle ? toIconName(languageToggle.icon) : null;
+
+  useEffect(() => {
+    if (sectionIds.length === 0) {
+      const resetFrameId = window.requestAnimationFrame(() => setActiveSectionId(null));
+      return () => window.cancelAnimationFrame(resetFrameId);
+    }
+
+    let animationFrameId = 0;
+
+    const updateActiveSection = () => {
+      const anchorY = window.scrollY + getStickyHeaderOffset() + 8;
+      let nextActiveSectionId: string | null = null;
+
+      sectionIds.forEach((sectionId) => {
+        const section = document.getElementById(sectionId);
+
+        if (!section) {
+          return;
+        }
+
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        const bottom = top + section.offsetHeight;
+
+        if (anchorY >= top && anchorY < bottom) {
+          nextActiveSectionId = sectionId;
+        }
+      });
+
+      setActiveSectionId(nextActiveSectionId);
+    };
+
+    const scheduleUpdate = () => {
+      window.cancelAnimationFrame(animationFrameId);
+      animationFrameId = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
+    };
+  }, [sectionIds]);
 
   return (
     <>
@@ -58,11 +130,21 @@ export function SiteHeader({
             </Link>
 
             <nav className="blog-site-nav__menu hidden items-center justify-center justify-self-center lg:flex" aria-label="Primary navigation">
-              {primaryLinks.map((link) => (
-                <a key={`${link.label}-${link.href}`} href={normalizeHeaderHref(link.href)} className="blog-site-nav__link">
-                  {link.label}
-                </a>
-              ))}
+              {primaryLinks.map((link) => {
+                const sectionId = getHashSectionId(link.href);
+                const isActive = sectionId !== null && activeSectionId === sectionId;
+
+                return (
+                  <a
+                    key={`${link.label}-${link.href}`}
+                    href={normalizeHeaderHref(link.href)}
+                    className={`blog-site-nav__link${isActive ? " is-active" : ""}`}
+                    aria-current={isActive ? "location" : undefined}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </nav>
 
             <div className="blog-site-nav__actions justify-self-end">
@@ -142,16 +224,22 @@ export function SiteHeader({
         <div className="blog-container">
           <div className="blog-nav-mobile__inner">
             <nav className="blog-nav-mobile__menu" aria-label="Mobile and tablet navigation">
-              {primaryLinks.map((link) => (
-                <a
-                  key={`mobile-${link.label}-${link.href}`}
-                  href={normalizeHeaderHref(link.href)}
-                  className="blog-nav-mobile__link"
-                  data-nav-close
-                >
-                  {link.label}
-                </a>
-              ))}
+              {primaryLinks.map((link) => {
+                const sectionId = getHashSectionId(link.href);
+                const isActive = sectionId !== null && activeSectionId === sectionId;
+
+                return (
+                  <a
+                    key={`mobile-${link.label}-${link.href}`}
+                    href={normalizeHeaderHref(link.href)}
+                    className={`blog-nav-mobile__link${isActive ? " is-active" : ""}`}
+                    aria-current={isActive ? "location" : undefined}
+                    data-nav-close
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </nav>
 
             <div className="blog-nav-mobile__actions">

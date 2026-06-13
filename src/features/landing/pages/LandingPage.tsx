@@ -1,4 +1,5 @@
 import "@/styles/shared/landing_page.css";
+import "@/styles/shared/blogs.css";
 import "@/styles/components/accordion.css";
 
 import landingContentJson from "@/data/landing_content.json";

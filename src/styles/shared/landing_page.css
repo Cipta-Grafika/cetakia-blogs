@@ -175,6 +175,10 @@
   background: color-mix(in srgb, var(--ui-surface-soft) 64%, transparent);
 }
 
+#workflow.lp-section--muted {
+  background: color-mix(in srgb, var(--ui-color-primary-soft) 15%, var(--ui-color-primary) 6%);
+}
+
 .lp-head {
   margin-bottom: 1.8rem;
 }
@@ -528,6 +532,15 @@
   gap: 1.1rem;
   grid-template-columns: 1fr;
   padding: clamp(1.2rem, 3.5vw, 2rem);
+}
+
+.lp-section--newsletter {
+  padding-bottom: clamp(1.6rem, 3vw, 2.4rem);
+  padding-top: 0;
+}
+
+.lp-section--newsletter .bp-newsletter {
+  margin-top: 0;
 }
 
 @media (min-width: 992px) {

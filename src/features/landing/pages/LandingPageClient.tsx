@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useSyncExternalStore } from "react";
 
+import { NewsletterSection } from "@/features/blogs/components/NewsletterSection";
 import { Accordion } from "@/features/global/components/Accordion";
 import { SiteFooter } from "@/features/global/components/SiteFooter";
 import { SiteHeader } from "@/features/global/components/SiteHeader";
@@ -50,6 +51,7 @@ function buildLocalizedSite(site: SiteData, contentRoot: LandingContentRoot, con
         links: contentRoot.footer.bottomLinks,
       },
     },
+    newsletter: content.newsletter,
   };
 }
 
@@ -270,6 +272,12 @@ export function LandingPageClient({ site, contentRoot }: LandingPageClientProps)
             <Accordion items={content.faq.items} className="mx-auto max-w-4xl" />
           </div>
         </section>
+
+        <div className="lp-section lp-section--newsletter">
+          <div className="blog-container">
+            <NewsletterSection newsletter={localizedSite.newsletter} />
+          </div>
+        </div>
       </main>
 
       <SiteFooter site={localizedSite} />

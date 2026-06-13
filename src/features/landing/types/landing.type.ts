@@ -1,4 +1,4 @@
-import type { InformationBarData, NavLink, FooterColumn } from "@/features/blogs/types/blog.type";
+import type { InformationBarData, NavLink, FooterColumn, NewsletterData } from "@/features/blogs/types/blog.type";
 
 export type LandingLocale = "id" | "en";
 
@@ -58,6 +58,7 @@ export type LandingPageContent = {
   footer: {
     description: string;
   };
+  newsletter: NewsletterData;
   hero: {
     eyebrow: string;
     titlePrefix: string;

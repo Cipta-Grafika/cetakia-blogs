@@ -76,6 +76,13 @@
       "footer": {
         "description": "Platform ERP profesional untuk bisnis percetakan yang membutuhkan kejelasan, kecepatan, dan kontrol operasional yang skalabel."
       },
+      "newsletter": {
+        "title": "Dapatkan insight sistem percetakan terbaru",
+        "description": "Berlangganan untuk menerima update produk Cetakia, panduan operasional percetakan, strategi digital printing, dan tips otomasi bisnis langsung di inbox Anda.",
+        "fieldLabel": "Alamat email",
+        "placeholder": "nama@email.com",
+        "submitLabel": "Berlangganan"
+      },
       "hero": {
         "eyebrow": "Sistem untuk Percetakan",
         "titlePrefix": "Solusi",
@@ -332,6 +339,13 @@
       },
       "footer": {
         "description": "A professional ERP platform for printing businesses that need clarity, speed, and scalable control."
+      },
+      "newsletter": {
+        "title": "Get the latest printing system insights",
+        "description": "Subscribe for Cetakia product updates, printing operations guides, digital printing strategies, and business automation tips delivered to your inbox.",
+        "fieldLabel": "Email address",
+        "placeholder": "your@email.com",
+        "submitLabel": "Subscribe"
       },
       "hero": {
         "eyebrow": "System for Printing",

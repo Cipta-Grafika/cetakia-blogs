@@ -126,7 +126,8 @@
   text-decoration: none;
 }
 
-.blog-site-nav__link:hover {
+.blog-site-nav__link:hover,
+.blog-site-nav__link.is-active {
   background: color-mix(in srgb, var(--ui-color-primary) 12%, transparent);
   color: var(--blog-link-color);
 }
@@ -299,7 +300,8 @@
   text-decoration: none;
 }
 
-.blog-nav-mobile__link:hover {
+.blog-nav-mobile__link:hover,
+.blog-nav-mobile__link.is-active {
   background: color-mix(in srgb, var(--ui-color-primary) 10%, transparent);
   color: var(--blog-link-color);
 }
@@ -312,11 +314,6 @@
 
 .blog-nav-mobile__actions .blog-site-nav__cta {
   width: 100%;
-}
-
-.blog-site-nav__link.is-active {
-  background: color-mix(in srgb, var(--ui-color-primary) 12%, transparent);
-  color: var(--blog-link-color);
 }
 
 @media (max-width: 1023px) {

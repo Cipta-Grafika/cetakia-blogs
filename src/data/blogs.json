@@ -62,7 +62,8 @@
             { "label": "Features", "href": "/#features" },
             { "label": "Workflow", "href": "/#workflow" },
             { "label": "Outcomes", "href": "/#outcomes" },
-            { "label": "Pricing", "href": "/#pricing" }
+            { "label": "Pricing", "href": "/#pricing" },
+            { "label": "Add-Ons", "href": "/add-ons" }
           ]
         },
         {

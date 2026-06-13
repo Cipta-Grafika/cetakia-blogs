@@ -223,5 +223,7 @@ jobs:
             curl --fail --silent --show-error --head "http://127.0.0.1:$PORT/about" || exit 1
             curl --fail --silent --show-error --head "http://127.0.0.1:$PORT/blogs" || exit 1
             curl --fail --silent --show-error --head "http://127.0.0.1:$PORT/contact-us" || exit 1
+            curl --fail --silent --show-error "http://127.0.0.1:$PORT/robots.txt" | grep -q "^User-agent:" || exit 1
+            curl --fail --silent --show-error "http://127.0.0.1:$PORT/sitemap.xml" | grep -q "<urlset" || exit 1
 
             echo "Deployment completed successfully!"

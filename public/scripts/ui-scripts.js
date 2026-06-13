@@ -26,8 +26,8 @@
   }
 
   try {
-    const THEME_STORAGE_KEY = "bp_theme_v2";
-    const THEME_COOKIE_KEY = "bp_theme_v2";
+    const THEME_STORAGE_KEY = "theme";
+    const THEME_COOKIE_KEY = "theme";
     const THEME_TOGGLE_SELECTOR = "[data-theme-toggle]";
     const THEME_BIND_ATTR = "data-bp-theme-bound";
 

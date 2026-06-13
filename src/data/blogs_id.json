@@ -36,7 +36,7 @@
       ]
     },
     "headerActions": {
-      "startNow": { "label": "Start Now", "href": "https://cetakia.com/register" },
+      "startNow": { "label": "Start Now", "href": "/login" },
       "themeToggleIcons": {
         "light": "bi-moon-stars",
         "dark": "bi-sun"

@@ -45,10 +45,35 @@ jobs:
             echo "Node version: $(node -v)"
             echo "NPM version: $(npm -v)"
 
+            echo "Ensuring deployment directories..."
+            mkdir -p "$RELEASES_DIR" "$SHARED_DIR"
+
+            if [ ! -d "$SRC_DIR/.git" ]; then
+              echo "Source repository not found. Cloning public repository..."
+              git clone -b "$BRANCH" "$REPO_URL" "$SRC_DIR"
+            fi
+
+            echo "Pulling latest code from $BRANCH..."
+            cd "$SRC_DIR"
+            git remote set-url origin "$REPO_URL"
+            git fetch origin "$BRANCH"
+            git checkout "$BRANCH"
+            git reset --hard "origin/$BRANCH"
+            git clean -fd
+
             echo "Ensuring pnpm is available..."
             if command -v corepack >/dev/null 2>&1; then
               corepack enable
-              corepack prepare pnpm@latest --activate
+
+              PNPM_VERSION="$(node -p "try { const p=require('./package.json').packageManager || ''; p.startsWith('pnpm@') ? p.replace('pnpm@','') : '' } catch(e) { '' }")"
+
+              if [ -n "$PNPM_VERSION" ]; then
+                echo "Using pnpm version from package.json: $PNPM_VERSION"
+                corepack prepare "pnpm@$PNPM_VERSION" --activate
+              else
+                echo "No packageManager pnpm version found. Preparing latest pnpm..."
+                corepack prepare pnpm@latest --activate
+              fi
             fi
 
             if ! command -v pnpm >/dev/null 2>&1; then
@@ -71,22 +96,6 @@ jobs:
             echo "Branch: $BRANCH"
             echo "Release ID: $RELEASE_ID"
 
-            echo "Ensuring deployment directories..."
-            mkdir -p "$RELEASES_DIR" "$SHARED_DIR"
-
-            if [ ! -d "$SRC_DIR/.git" ]; then
-              echo "Source repository not found. Cloning public repository..."
-              git clone -b "$BRANCH" "$REPO_URL" "$SRC_DIR"
-            fi
-
-            echo "Pulling latest code from $BRANCH..."
-            cd "$SRC_DIR"
-            git remote set-url origin "$REPO_URL"
-            git fetch origin "$BRANCH"
-            git checkout "$BRANCH"
-            git reset --hard "origin/$BRANCH"
-            git clean -fd
-
             echo "Loading build/runtime environment if available..."
             set -a
             [ -f "$SHARED_DIR/.env.production" ] && . "$SHARED_DIR/.env.production"
@@ -100,31 +109,76 @@ jobs:
               pnpm install
             fi
 
+            echo "Cleaning previous Next.js build cache..."
+            rm -rf .next
+
             echo "Building Next.js app with pnpm..."
             pnpm run build
 
             echo "Validating standalone build output..."
-            test -f ".next/standalone/server.js"
-            test -d ".next/static"
+
+            if [ ! -d ".next/standalone" ]; then
+              echo "ERROR: .next/standalone directory not found."
+              echo "Possible cause: next.config.ts does not include output: 'standalone'."
+              echo "Current .next contents:"
+              ls -la .next || true
+              exit 1
+            fi
+
+            STANDALONE_SERVER="$(find .next/standalone \
+              -path "*/node_modules/*" -prune -o \
+              -type f -name "server.js" -print | head -n 1)"
+
+            if [ -z "$STANDALONE_SERVER" ]; then
+              echo "ERROR: main server.js not found inside .next/standalone."
+              echo "Current standalone contents:"
+              find .next/standalone -maxdepth 5 -type f | sort | head -100 || true
+              exit 1
+            fi
+
+            if [ ! -d ".next/static" ]; then
+              echo "ERROR: .next/static not found."
+              echo "Current .next contents:"
+              ls -la .next || true
+              exit 1
+            fi
+
+            SERVER_RELATIVE_DIR="$(dirname "$STANDALONE_SERVER" | sed 's#^\.next/standalone##; s#^/##')"
+
+            echo "Standalone server found at: $STANDALONE_SERVER"
+            echo "Server relative dir: ${SERVER_RELATIVE_DIR:-.}"
 
             echo "Creating release directory..."
             mkdir -p "$RELEASE_DIR"
 
-            echo "Copying standalone server..."
+            echo "Copying standalone output..."
             rsync -a --delete ".next/standalone/" "$RELEASE_DIR/"
 
-            echo "Copying Next.js static assets..."
-            mkdir -p "$RELEASE_DIR/.next"
-            rsync -a --delete ".next/static/" "$RELEASE_DIR/.next/static/"
+            if [ -n "$SERVER_RELATIVE_DIR" ]; then
+              RUNTIME_DIR="$RELEASE_DIR/$SERVER_RELATIVE_DIR"
+              PM2_CWD="$CURRENT_LINK/$SERVER_RELATIVE_DIR"
+            else
+              RUNTIME_DIR="$RELEASE_DIR"
+              PM2_CWD="$CURRENT_LINK"
+            fi
 
-            echo "Copying public assets..."
+            echo "Runtime directory: $RUNTIME_DIR"
+            echo "PM2 cwd: $PM2_CWD"
+
+            mkdir -p "$RUNTIME_DIR"
+
+            echo "Copying Next.js static assets into runtime directory..."
+            mkdir -p "$RUNTIME_DIR/.next"
+            rsync -a --delete ".next/static/" "$RUNTIME_DIR/.next/static/"
+
+            echo "Copying public assets into runtime directory..."
             if [ -d "public" ]; then
-              rsync -a --delete "public/" "$RELEASE_DIR/public/"
+              rsync -a --delete "public/" "$RUNTIME_DIR/public/"
             fi
 
             echo "Linking env file if available..."
             if [ -f "$SHARED_DIR/.env.production" ]; then
-              ln -sfn "$SHARED_DIR/.env.production" "$RELEASE_DIR/.env.production"
+              ln -sfn "$SHARED_DIR/.env.production" "$RUNTIME_DIR/.env.production"
             fi
 
             echo "Writing PM2 ecosystem file..."
@@ -133,14 +187,15 @@ jobs:
               apps: [
                 {
                   name: '$APP_NAME',
-                  cwd: '$CURRENT_LINK',
+                  cwd: '$PM2_CWD',
                   script: 'server.js',
                   exec_mode: 'fork',
                   instances: 1,
                   env: {
                     NODE_ENV: 'production',
                     PORT: $PORT,
-                    HOSTNAME: '127.0.0.1'
+                    HOSTNAME: '127.0.0.1',
+                    NEXT_TELEMETRY_DISABLED: '1'
                   },
                   max_memory_restart: '500M',
                   watch: false
@@ -162,10 +217,11 @@ jobs:
             ls -dt "$RELEASES_DIR"/* 2>/dev/null | tail -n +6 | xargs -r rm -rf
 
             echo "Testing local Next.js server..."
-            sleep 3
-            curl -I "http://127.0.0.1:$PORT" || exit 1
-            curl -I "http://127.0.0.1:$PORT/about" || exit 1
-            curl -I "http://127.0.0.1:$PORT/blogs" || exit 1
-            curl -I "http://127.0.0.1:$PORT/contact-us" || exit 1
+            sleep 5
+
+            curl --fail --silent --show-error --head "http://127.0.0.1:$PORT" || exit 1
+            curl --fail --silent --show-error --head "http://127.0.0.1:$PORT/about" || exit 1
+            curl --fail --silent --show-error --head "http://127.0.0.1:$PORT/blogs" || exit 1
+            curl --fail --silent --show-error --head "http://127.0.0.1:$PORT/contact-us" || exit 1
 
             echo "Deployment completed successfully!"

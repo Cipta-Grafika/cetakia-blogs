@@ -167,8 +167,8 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --ui-color-accent: #239ae8;
-  --ui-color-accent-hover: #33b4f4;
-  --ui-color-accent-active: #1c87d3;
+  --ui-color-accent-hover: #1c87d3;
+  --ui-color-accent-active: #33b4f4;
 
   --ui-color-primary: var(--ui-color-accent);
   --ui-color-primary-hover: var(--ui-color-accent-hover);
@@ -278,8 +278,8 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --ui-color-accent: #239ae8;
-    --ui-color-accent-hover: #33b4f4;
-    --ui-color-accent-active: #1c87d3;
+    --ui-color-accent-hover: #1c87d3;
+    --ui-color-accent-active: #33b4f4;
 
     --ui-color-primary: var(--ui-color-accent);
     --ui-color-primary-hover: var(--ui-color-accent-hover);

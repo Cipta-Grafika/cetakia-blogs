@@ -1,10 +1,17 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  output: "standalone",
+
+  turbopack: {
+    root: path.resolve(process.cwd()),
+  },
+
   logging: {
     browserToTerminal: false,
   },
+
   images: {
     qualities: [68, 72, 75],
     remotePatterns: [
@@ -27,6 +34,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "i.ytimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "staging.cetakia.com",
+        pathname: "/upload/img/**",
       },
     ],
   },

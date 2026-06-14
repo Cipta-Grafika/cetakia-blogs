@@ -14,6 +14,7 @@ export type FooterColumn = {
 
 export type FooterData = {
   description: string;
+  contactLinks?: NavLink[];
   socialLinks?: NavLink[];
   columns: FooterColumn[];
   bottom: {

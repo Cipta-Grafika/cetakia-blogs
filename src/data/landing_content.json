@@ -31,20 +31,34 @@
           { "label": "Features", "href": "/#features" },
           { "label": "Workflow", "href": "/#workflow" },
           { "label": "Outcomes", "href": "/#outcomes" },
-          { "label": "Pricing", "href": "/#pricing" }
+          { "label": "Pricing", "href": "/#pricing" },
+          { "label": "Add-Ons", "href": "/add-ons" }
         ]
       },
       {
-        "title": "Platform Areas",
-        "items": ["Sales and Delivery", "Production Jobs", "Purchasing and Vendors", "Accounting and Reports"]
+        "title": "Resources",
+        "links": [
+          { "label": "Blog", "href": "/blogs" },
+          { "label": "FAQ", "href": "/#faq" },
+          { "label": "Documentation", "href": "/documentation" },
+          { "label": "Video Tutorial", "href": "/video-tutorial" },
+          { "label": "Sitemap", "href": "/sitemap.xml" }
+        ]
       },
       {
-        "title": "Get Started",
+        "title": "Company",
         "links": [
-          { "label": "sales@cetakia.com", "href": "mailto:sales@cetakia.com" },
-          { "label": "+62 889-8617-9658", "href": "tel:+6288986179658" }
+          { "label": "About Us", "href": "/about" },
+          { "label": "Contact Us", "href": "/contact-us" },
+          { "label": "Events", "href": "/events" },
+          { "label": "Career", "href": "/career" },
+          { "label": "Partnership", "href": "/partnership" }
         ]
       }
+    ],
+    "contactLinks": [
+      { "label": "+62 889-8617-9658", "href": "https://wa.me/6288986179658", "icon": "bi-whatsapp" },
+      { "label": "sales@cetakia.com", "href": "mailto:sales@cetakia.com", "icon": "bi-envelope-fill" }
     ],
     "copyright": "© 2026 Cetakia. All rights reserved.",
     "bottomLinks": [
@@ -62,6 +76,13 @@
       },
       "footer": {
         "description": "Platform ERP profesional untuk bisnis percetakan yang membutuhkan kejelasan, kecepatan, dan kontrol operasional yang skalabel."
+      },
+      "newsletter": {
+        "title": "Dapatkan insight sistem percetakan terbaru",
+        "description": "Berlangganan untuk menerima update produk Cetakia, panduan operasional percetakan, strategi digital printing, dan tips otomasi bisnis langsung di inbox Anda.",
+        "fieldLabel": "Alamat email",
+        "placeholder": "nama@email.com",
+        "submitLabel": "Berlangganan"
       },
       "hero": {
         "eyebrow": "Sistem untuk Percetakan",
@@ -211,7 +232,18 @@
             "suffix": "/bln.",
             "ctaLabel": "Mulai Gratis",
             "ctaVariant": "outline",
-            "features": ["1 workspace perusahaan", "Penawaran dan pelacakan order dasar", "Hingga 3 pengguna aktif"]
+            "features": [
+              "1 workspace perusahaan",
+              "1 cabang/divisi",
+              "Hingga 10 pengguna aktif",
+              "CRM dan profil pelanggan basic",
+              "Point of Sales basic",
+              "Inventory basic",
+              "Monitoring produksi basic",
+              "Dashboard ringkas",
+              "Payment gateway ready",
+              "Notifikasi real-time terbatas"
+            ]
           },
           {
             "name": "Basic",
@@ -221,7 +253,19 @@
             "suffix": "/bln.",
             "ctaLabel": "Pilih Basic",
             "ctaVariant": "outline",
-            "features": ["Modul penjualan, pengiriman, dan pembelian", "Hingga 10 pengguna aktif", "Laporan yang dapat diekspor"]
+            "features": [
+              "Semua fitur Free Starter",
+              "Hingga 25 pengguna aktif",
+              "Hingga 2 cabang/divisi",
+              "Modul Sales dan POS",
+              "Modul CRM",
+              "Modul Purchase",
+              "Manajemen inventory",
+              "Monitoring job/produksi",
+              "Delivery order",
+              "Laporan dan cetak dokumen",
+              "Dukungan email"
+            ]
           },
           {
             "name": "Pro",
@@ -232,7 +276,18 @@
             "ctaLabel": "Mulai dengan Pro",
             "ctaVariant": "solid",
             "recommended": true,
-            "features": ["Orkestrasi workflow end-to-end", "Hingga 40 pengguna aktif", "Dukungan prioritas"]
+            "features": [
+              "Semua fitur Basic",
+              "Hingga 50 pengguna aktif",
+              "Orkestrasi workflow end-to-end",
+              "CRM advanced dan segmentasi pelanggan",
+              "Modul marketing",
+              "Otomasi emailing basic",
+              "Manajemen proyek",
+              "Manajemen jadwal dan prioritas",
+              "Notifikasi real-time",
+              "Dukungan prioritas"
+            ]
           },
           {
             "name": "Enterprise",
@@ -242,7 +297,19 @@
             "suffix": "/bln.",
             "ctaLabel": "Hubungi Sales",
             "ctaVariant": "outline",
-            "features": ["Operasi multi-divisi", "Pengguna tanpa batas", "Dedicated success manager"]
+            "features": [
+              "Semua fitur Pro",
+              "Hingga 100 pengguna aktif",
+              "Kontrol operasional multi-cabang",
+              "Modul accounting",
+              "Business intelligence",
+              "Advanced reporting",
+              "Advanced audit trail",
+              "Advanced approval workflow",
+              "Dukungan prioritas",
+              "Alokasi performa prioritas",
+              "Dedicated success assistance"
+            ]
           },
           {
             "name": "Custom",
@@ -252,7 +319,19 @@
             "suffix": "paket",
             "ctaLabel": "Minta Proposal",
             "ctaVariant": "outline",
-            "features": ["Bundling modul khusus", "Opsi private deployment", "Konsultasi implementasi"]
+            "features": [
+              "Bundling modul custom",
+              "Jumlah pengguna aktif custom",
+              "Workflow/fitur custom",
+              "Opsi private deployment",
+              "Opsi dedicated server",
+              "API/integrasi custom",
+              "Dukungan migrasi data",
+              "Konsultasi implementasi end-to-end",
+              "Training dan onboarding",
+              "SLA custom",
+              "Reporting dan dashboard custom"
+            ]
           }
         ]
       },
@@ -319,6 +398,13 @@
       },
       "footer": {
         "description": "A professional ERP platform for printing businesses that need clarity, speed, and scalable control."
+      },
+      "newsletter": {
+        "title": "Get the latest printing system insights",
+        "description": "Subscribe for Cetakia product updates, printing operations guides, digital printing strategies, and business automation tips delivered to your inbox.",
+        "fieldLabel": "Email address",
+        "placeholder": "your@email.com",
+        "submitLabel": "Subscribe"
       },
       "hero": {
         "eyebrow": "System for Printing",
@@ -468,7 +554,18 @@
             "suffix": "/mo.",
             "ctaLabel": "Start Free",
             "ctaVariant": "outline",
-            "features": ["1 company workspace", "Quotation and basic order tracking", "Up to 3 active users"]
+            "features": [
+              "1 company workspace",
+              "1 branch/division",
+              "Up to 10 active users",
+              "Basic CRM and customer profiles",
+              "Basic Point of Sales",
+              "Basic inventory",
+              "Basic production monitoring",
+              "Compact dashboard",
+              "Payment gateway ready",
+              "Limited real-time notifications"
+            ]
           },
           {
             "name": "Basic",
@@ -478,7 +575,19 @@
             "suffix": "/mo.",
             "ctaLabel": "Choose Basic",
             "ctaVariant": "outline",
-            "features": ["Sales, delivery, and purchase modules", "Up to 10 active users", "Exportable reports"]
+            "features": [
+              "All Free Starter features",
+              "Up to 25 active users",
+              "Up to 2 branches/divisions",
+              "Sales and POS modules",
+              "CRM modules",
+              "Purchase modules",
+              "Inventory management",
+              "Job/production monitoring",
+              "Delivery orders",
+              "Reports and print documents",
+              "Email support"
+            ]
           },
           {
             "name": "Pro",
@@ -489,7 +598,18 @@
             "ctaLabel": "Start with Pro",
             "ctaVariant": "solid",
             "recommended": true,
-            "features": ["End-to-end workflow orchestration", "Up to 40 active users", "Priority support"]
+            "features": [
+              "All Basic features",
+              "Up to 50 active users",
+              "End-to-end workflow orchestration",
+              "Advanced CRM and customer segmentation",
+              "Marketing modules",
+              "Basic emailing automation",
+              "Project management",
+              "Scheduling and priority management",
+              "Real-time notifications",
+              "Priority support"
+            ]
           },
           {
             "name": "Enterprise",
@@ -499,7 +619,19 @@
             "suffix": "/mo.",
             "ctaLabel": "Contact Sales",
             "ctaVariant": "outline",
-            "features": ["Multi-division operations", "Unlimited users", "Dedicated success manager"]
+            "features": [
+              "All Pro features",
+              "Up to 100 active users",
+              "Multi-branch operational control",
+              "Accounting modules",
+              "Business intelligence",
+              "Advanced reporting",
+              "Advanced audit trail",
+              "Advanced approval workflow",
+              "Priority support",
+              "Priority performance allocation",
+              "Dedicated success assistance"
+            ]
           },
           {
             "name": "Custom",
@@ -509,7 +641,19 @@
             "suffix": "plan",
             "ctaLabel": "Request Proposal",
             "ctaVariant": "outline",
-            "features": ["Custom module bundling", "Private deployment options", "Implementation consulting"]
+            "features": [
+              "Custom module bundling",
+              "Custom active users",
+              "Custom workflow/features",
+              "Private deployment option",
+              "Dedicated server option",
+              "Custom API/integration",
+              "Data migration support",
+              "End-to-end implementation consulting",
+              "Training and onboarding",
+              "Custom SLA",
+              "Custom reporting and dashboard"
+            ]
           }
         ]
       },

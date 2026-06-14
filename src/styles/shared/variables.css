@@ -167,8 +167,8 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --ui-color-accent: #239ae8;
-  --ui-color-accent-hover: #33b4f4;
-  --ui-color-accent-active: #1c87d3;
+  --ui-color-accent-hover: #1c87d3;
+  --ui-color-accent-active: #33b4f4;
 
   --ui-color-primary: var(--ui-color-accent);
   --ui-color-primary-hover: var(--ui-color-accent-hover);
@@ -176,7 +176,7 @@
   --ui-color-primary-soft: #10283a;
   --ui-color-primary-soft-active: #15354d;
   --ui-color-primary-ring: rgb(51 180 244 / 0.4);
-  --ui-info-bar-bg: var(--ui-color-accent-hover);
+  --ui-info-bar-bg: var(--ui-color-primary-active);
   --ui-info-bar-text: #0a2958;
   --ui-info-bar-text-hover: #0a2650;
   --ui-solid-button-bg: var(--ui-color-accent-active);
@@ -278,8 +278,8 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --ui-color-accent: #239ae8;
-    --ui-color-accent-hover: #33b4f4;
-    --ui-color-accent-active: #1c87d3;
+    --ui-color-accent-hover: #1c87d3;
+    --ui-color-accent-active: #33b4f4;
 
     --ui-color-primary: var(--ui-color-accent);
     --ui-color-primary-hover: var(--ui-color-accent-hover);
@@ -287,7 +287,7 @@
     --ui-color-primary-soft: #10283a;
     --ui-color-primary-soft-active: #15354d;
     --ui-color-primary-ring: rgb(51 180 244 / 0.4);
-    --ui-info-bar-bg: var(--ui-color-accent-hover);
+    --ui-info-bar-bg: var(--ui-color-primary-active);
     --ui-info-bar-text: #0a2958;
     --ui-info-bar-text-hover: #0a2650;
 

@@ -1,0 +1,191 @@
+name: Bug Report
+description: Laporkan bugs, major/minor issues, problem FE, regression, atau temuan teknis lain pada public Next.js app.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Terima kasih sudah membuat laporan. Isi detail yang relevan agar issue mudah direproduksi, diprioritaskan, dan ditangani.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Ringkasan masalah
+      description: Jelaskan masalah secara singkat dan spesifik.
+      placeholder: "Contoh: Header active state tidak berubah saat scroll ke section Pricing."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: Pilih tingkat dampak masalah.
+      options:
+        - Critical - Production broken, data/SEO utama terdampak, atau halaman tidak dapat diakses
+        - Major - Fitur penting rusak atau menghambat user journey utama
+        - Minor - Masalah UI/UX terbatas, typo, spacing, atau edge case
+        - Low - Enhancement kecil, polish, atau temuan non-blocking
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Jenis temuan
+      options:
+        - Bug
+        - Regression
+        - UI/UX issue
+        - Responsive layout issue
+        - Accessibility issue
+        - SEO/crawling issue
+        - Performance issue
+        - Content/copy issue
+        - Deployment/config issue
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area terdampak
+      options:
+        - Landing page
+        - Header/navigation
+        - Footer
+        - Blog listing
+        - Blog detail
+        - Category/tag page
+        - About page
+        - Contact page
+        - Theme/light-dark mode
+        - SEO metadata/robots/sitemap
+        - Assets/images/icons
+        - CI/CD deployment
+        - Others
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Production - cetakia.com
+        - Staging - staging.cetakia.com
+        - Local development
+        - Preview/other
+    validations:
+      required: true
+
+  - type: input
+    id: affected_url
+    attributes:
+      label: URL atau route terdampak
+      description: Masukkan URL penuh atau route Next.js yang bermasalah.
+      placeholder: https://staging.cetakia.com/#pricing
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Langkah reproduksi
+      description: Tulis langkah yang jelas agar masalah bisa diulang.
+      placeholder: |
+        1. Buka halaman ...
+        2. Klik/scroll ke ...
+        3. Perhatikan bagian ...
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_result
+    attributes:
+      label: Hasil aktual
+      description: Apa yang benar-benar terjadi?
+      placeholder: "Contoh: Link header tetap memakai warna default dan tidak masuk state active."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: Hasil yang diharapkan
+      description: Apa behavior/tampilan yang seharusnya terjadi?
+      placeholder: "Contoh: Link header berubah ke warna accent saat section terkait sedang terlihat."
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshot, video, atau bukti pendukung
+      description: Upload screenshot/video atau paste link bukti temuan.
+      placeholder: Drag and drop file di sini, atau paste URL bukti.
+
+  - type: textarea
+    id: console_network_logs
+    attributes:
+      label: Console error atau network log
+      description: Paste error browser, Lighthouse, request gagal, response header, atau stack trace yang relevan.
+      render: shell
+      placeholder: |
+        Refused to execute script ...
+        GET /robots.txt 200 text/html
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Edge
+        - Safari
+        - Firefox
+        - Mobile Safari
+        - Chrome Android
+        - Other
+
+  - type: input
+    id: viewport_device
+    attributes:
+      label: Device atau viewport
+      description: Isi device, OS, atau ukuran viewport jika relevan.
+      placeholder: "Contoh: MacBook 1440x900, iPhone 14, Android Chrome 390x844"
+
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Theme
+      options:
+        - Tidak spesifik
+        - Light
+        - Dark
+        - Keduanya
+
+  - type: textarea
+    id: suspected_cause
+    attributes:
+      label: Dugaan penyebab atau konteks tambahan
+      description: Opsional. Tambahkan file, komponen, commit, atau perubahan terakhir yang mungkin terkait.
+      placeholder: "Contoh: Kemungkinan terkait perubahan SiteHeader active state atau cache Cloudflare."
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Checklist reporter
+      options:
+        - label: Saya sudah memastikan issue masih terjadi setelah hard refresh atau clear cache.
+        - label: Saya sudah mengecek issue ini belum pernah dilaporkan di issue lain.
+        - label: Saya sudah menyertakan langkah reproduksi yang cukup jelas.
+          required: true
+        - label: Saya sudah menyertakan screenshot/log jika masalah membutuhkan bukti visual atau teknis.

@@ -36,7 +36,7 @@
       ]
     },
     "headerActions": {
-      "startNow": { "label": "Start Now", "href": "https://cetakia.com/register" },
+      "startNow": { "label": "Start Now", "href": "/login" },
       "themeToggleIcons": {
         "light": "bi-moon-stars",
         "dark": "bi-sun"
@@ -44,6 +44,10 @@
     },
     "footer": {
       "description": "A professional ERP platform for printing businesses that need clarity, speed, and scalable control.",
+      "contactLinks": [
+        { "label": "+62 889-8617-9658", "href": "https://wa.me/6288986179658", "icon": "bi-whatsapp" },
+        { "label": "sales@cetakia.com", "href": "mailto:sales@cetakia.com", "icon": "bi-envelope-fill" }
+      ],
       "socialLinks": [
         { "label": "LinkedIn", "href": "https://www.linkedin.com", "icon": "bi-linkedin" },
         { "label": "YouTube", "href": "https://www.youtube.com", "icon": "bi-youtube" },
@@ -58,23 +62,28 @@
             { "label": "Features", "href": "/#features" },
             { "label": "Workflow", "href": "/#workflow" },
             { "label": "Outcomes", "href": "/#outcomes" },
-            { "label": "Pricing", "href": "/#pricing" }
+            { "label": "Pricing", "href": "/#pricing" },
+            { "label": "Add-Ons", "href": "/add-ons" }
           ]
         },
         {
-          "title": "Platform Areas",
-          "items": [
-            "Sales and Delivery",
-            "Production Jobs",
-            "Purchasing and Vendors",
-            "Accounting and Reports"
-          ]
-        },
-        {
-          "title": "Get Started",
+          "title": "Resources",
           "links": [
-            { "label": "sales@cetakia.com", "href": "mailto:sales@cetakia.com" },
-            { "label": "+62 889-8617-9658", "href": "tel:+6288986179658" }
+            { "label": "Blog", "href": "/blogs" },
+            { "label": "FAQ", "href": "/#faq" },
+            { "label": "Documentation", "href": "/documentation" },
+            { "label": "Video Tutorial", "href": "/video-tutorial" },
+            { "label": "Sitemap", "href": "/sitemap.xml" }
+          ]
+        },
+        {
+          "title": "Company",
+          "links": [
+            { "label": "About Us", "href": "/about" },
+            { "label": "Contact Us", "href": "/contact-us" },
+            { "label": "Events", "href": "/events" },
+            { "label": "Career", "href": "/career" },
+            { "label": "Partnership", "href": "/partnership" }
           ]
         }
       ],

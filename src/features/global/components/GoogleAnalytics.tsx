@@ -1,14 +1,14 @@
 import { Suspense } from "react";
-import Script from "next/script";
 
 import { GoogleAnalyticsPageView } from "@/features/global/components/GoogleAnalyticsPageView";
 import { GOOGLE_ANALYTICS_MEASUREMENT_ID } from "@/features/global/constants/analytics";
 
 const googleAnalyticsInitScript = `
   window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
-  window.gtag("js", new Date());
-  window.gtag("config", ${JSON.stringify(GOOGLE_ANALYTICS_MEASUREMENT_ID)}, { send_page_view: false });
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag("js", new Date());
+  gtag("config", ${JSON.stringify(GOOGLE_ANALYTICS_MEASUREMENT_ID)});
 `;
 
 export function GoogleAnalyticsHead() {
@@ -18,12 +18,8 @@ export function GoogleAnalyticsHead() {
 
   return (
     <>
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics-init" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: googleAnalyticsInitScript }} />
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_MEASUREMENT_ID}`} />
+      <script id="google-analytics-init" dangerouslySetInnerHTML={{ __html: googleAnalyticsInitScript }} />
     </>
   );
 }

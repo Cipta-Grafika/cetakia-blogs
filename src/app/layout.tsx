@@ -6,6 +6,7 @@ import "./globals.css";
 import cetakiaFavicon from "./cetakia.webp";
 import { FloatingActions } from "@/features/global/components/FloatingActions";
 import { GlobalClientEffects } from "@/features/global/components/GlobalClientEffects";
+import { GoogleAnalyticsHead, GoogleAnalyticsPageViewTracker } from "@/features/global/components/GoogleAnalytics";
 import {
   DARK_THEME_BACKGROUND,
   EARLY_THEME_BOOT_SCRIPT,
@@ -57,8 +58,10 @@ export default async function RootLayout({
       <head>
         <style dangerouslySetInnerHTML={{ __html: EARLY_THEME_BOOT_STYLE }} />
         <Script id="early-theme-boot" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: EARLY_THEME_BOOT_SCRIPT }} />
+        <GoogleAnalyticsHead />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <GoogleAnalyticsPageViewTracker />
         <GlobalClientEffects />
         {children}
         <FloatingActions />

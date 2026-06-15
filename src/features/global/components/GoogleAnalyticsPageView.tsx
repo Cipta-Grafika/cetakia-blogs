@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 declare global {
   interface Window {
@@ -17,9 +17,15 @@ export function GoogleAnalyticsPageView({ measurementId }: GoogleAnalyticsPageVi
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const search = searchParams.toString();
+  const hasSkippedInitialPageView = useRef(false);
 
   useEffect(() => {
     if (!pathname || typeof window.gtag !== "function") {
+      return;
+    }
+
+    if (!hasSkippedInitialPageView.current) {
+      hasSkippedInitialPageView.current = true;
       return;
     }
 
